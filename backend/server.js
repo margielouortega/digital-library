@@ -35,7 +35,9 @@ function borrowingView(row) {
   if (!book || !user) return null;
   return { ...row, book_title: book.title, book_author: book.author, isbn: book.isbn, borrower_name: user.name, borrower_email: user.email, student_id: user.student_id, is_overdue: row.status === 'borrowed' && row.due_date < today() };
 }
-
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'HEU Digital Library API', storage: 'JSON file' }));
 app.post('/api/auth/login', (req, res) => {
   const email = String(req.body.email || '').trim().toLowerCase();
