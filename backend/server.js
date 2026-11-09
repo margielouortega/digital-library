@@ -35,6 +35,8 @@ function borrowingView(row) {
   if (!book || !user) return null;
   return { ...row, book_title: book.title, book_author: book.author, isbn: book.isbn, borrower_name: user.name, borrower_email: user.email, student_id: user.student_id, is_overdue: row.status === 'borrowed' && row.due_date < today() };
 }
+const PORT = process.env.PORT || 10000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
